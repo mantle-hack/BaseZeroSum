@@ -16,18 +16,22 @@ const metadata = {
   icons: ["https://zerosum-arena.vercel.app/og.png"],
 };
 
-// Log environment info for debugging
+// Log environment info for debugging (Billoq-style)
 console.log(`🌍 ZeroSum AppKit Environment: ${isMainnet ? 'Mainnet' : 'Testnet'}`);
 console.log(`📡 Supported Networks:`, networks.map((n: AppKitNetwork) => n.name));
+console.log(`⚔️ ZeroSum Arena ready with multi-chain support!`);
 
-// 3. Create the AppKit instance with WagmiAdapter
+// 3. Create the AppKit instance with WagmiAdapter (Billoq-style configuration)
 createAppKit({
   adapters: [wagmiAdapter],
   metadata,
   networks,
   projectId,
   features: {
-    analytics: true,
+    email: false,
+    socials: false,
+    analytics: true, // Optional - defaults to your Cloud configuration
+    onramp: isMainnet, // Enable onramp only for mainnet
   },
   // Optional: Add environment-specific features
   ...(isMainnet ? {
